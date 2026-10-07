@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ai短剧 - AI短剧创作工具、制作流程与行业观察指南</title>
+<meta name="description" content="围绕ai短剧的实用指南：了解AI短剧是什么、常见创作工具与制作流程、剧本与分镜生成方法、配音与画面合成要点、发布渠道选择以及版权与合规注意事项。">
+<meta name="keywords" content="ai短剧,AI短剧制作,AI短剧工具,AI剧本生成,AI分镜,AI配音,短剧创作">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+  :root{
+    --bg:#0d0f1a;
+    --bg-soft:#141728;
+    --panel:#1a1e33;
+    --panel-2:#212745;
+    --line:rgba(255,255,255,.09);
+    --text:#eef1ff;
+    --muted:#a3a9c9;
+    --accent:#7c5cff;
+    --accent-2:#22d3ee;
+    --accent-3:#ff6b9d;
+    --radius:16px;
+    --shadow:0 18px 40px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,sans-serif;
+    background:
+      radial-gradient(900px 500px at 12% -8%, rgba(124,92,255,.28), transparent 60%),
+      radial-gradient(800px 460px at 92% 4%, rgba(34,211,238,.18), transparent 62%),
+      var(--bg);
+    color:var(--text);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:min(1180px,92vw);margin:0 auto}
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(13,15,26,.82);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:18px;padding:14px 0;
+  }
+  .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .brand-mark{
+    width:42px;height:42px;border-radius:13px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:grid;place-items:center;
+    font-weight:800;font-size:16px;color:#0b0d18;
+    letter-spacing:.5px;
+  }
+  .brand-text strong{display:block;font-size:17px;letter-spacing:.5px}
+  .brand-text span{display:block;font-size:12px;color:var(--muted);letter-spacing:.4px}
+  .nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+  .nav a{
+    font-size:14px;color:var(--muted);
+    padding:8px 13px;border-radius:10px;
+    transition:.2s;
+  }
+  .nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+  .nav .cta{
+    color:#fff;
+    background:linear-gradient(135deg,var(--accent),#5b3df0);
+    box-shadow:0 8px 20px rgba(124,92,255,.35);
+  }
+  .nav .cta:hover{background:linear-gradient(135deg,#8b6dff,#6a4bff)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 46px}
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr .85fr;
+    gap:44px;align-items:center;
+  }
+  .tagline{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--accent-2);
+    border:1px solid rgba(34,211,238,.35);
+    background:rgba(34,211,238,.08);
+    padding:6px 14px;border-radius:999px;margin-bottom:20px;
+  }
+  .tagline i{width:7px;height:7px;border-radius:50%;background:var(--accent-2);display:block}
+  .hero h1{
+    font-size:clamp(28px,4.2vw,44px);
+    line-height:1.25;letter-spacing:.5px;
+    margin-bottom:18px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(100deg,var(--accent-2),var(--accent-3));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{color:var(--muted);font-size:16px;max-width:640px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:12px;
+    font-size:15px;font-weight:600;transition:.22s;
+    border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),#5b3df0);
+    color:#fff;box-shadow:0 12px 28px rgba(124,92,255,.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{
+    border-color:var(--line);color:var(--text);
+    background:rgba(255,255,255,.03);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:14px;margin-top:34px;max-width:560px;
+  }
+  .stat{
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:14px 16px;
+  }
+  .stat strong{display:block;font-size:19px;color:var(--accent-2)}
+  .stat span{font-size:12.5px;color:var(--muted)}
+
+  /* hero visual */
+  .stage{
+    position:relative;
+    background:linear-gradient(160deg,var(--panel-2),var(--bg-soft));
+    border:1px solid var(--line);border-radius:22px;
+    padding:22px;box-shadow:var(--shadow);
+  }
+  .stage-head{display:flex;gap:7px;margin-bottom:16px}
+  .stage-head i{width:11px;height:11px;border-radius:50%;background:#3a4166;display:block}
+  .stage-head i:first-child{background:var(--accent-3)}
+  .stage-head i:nth-child(2){background:#ffc857}
+  .stage-head i:nth-child(3){background:var(--accent-2)}
+  .shot{
+    border-radius:14px;overflow:hidden;position:relative;
+    aspect-ratio:16/10;
+    background:
+      radial-gradient(120% 120% at 20% 10%, rgba(124,92,255,.55), transparent 55%),
+      radial-gradient(120% 120% at 85% 90%, rgba(34,211,238,.45), transparent 55%),
+      #0a0c16;
+    border:1px solid var(--line);
+    display:grid;place-items:center;
+  }
+  .shot::after{
+    content:"AI SCENE 01 · 分镜预览";
+    position:absolute;left:14px;bottom:12px;
+    font-size:12px;color:rgba(255,255,255,.72);
+    letter-spacing:1px;
+  }
+  .shot-icon{
+    width:64px;height:64px;border-radius:50%;
+    border:2px solid rgba(255,255,255,.65);
+    display:grid;place-items:center;
+  }
+  .shot-icon::before{
+    content:"";border-left:16px solid rgba(255,255,255,.9);
+    border-top:10px solid transparent;border-bottom:10px solid transparent;
+    margin-left:5px;
+  }
+  .stage-list{list-style:none;margin-top:16px;display:grid;gap:9px}
+  .stage-list li{
+    display:flex;align-items:center;gap:10px;
+    font-size:13.5px;color:var(--muted);
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--line);border-radius:10px;padding:9px 13px;
+  }
+  .stage-list li b{
+    font-size:11px;font-weight:700;color:#0b0d18;
+    background:var(--accent-2);border-radius:6px;padding:2px 7px;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0}
+  .sec-head{margin-bottom:32px;max-width:760px}
+  .sec-kicker{
+    font-size:13px;letter-spacing:2px;color:var(--accent);
+    font-weight:700;margin-bottom:10px;text-transform:uppercase;
+  }
+  .sec-head h2{font-size:clamp(22px,3vw,30px);letter-spacing:.4px;margin-bottom:12px}
+  .sec-head p{color:var(--muted);font-size:15px}
+
+  .card-grid{display:grid;gap:20px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+
+  .card{
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px;
+    transition:.24s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.5);background:var(--panel-2)}
+  .card .ico{
+    width:44px;height:44px;border-radius:12px;
+    display:grid;place-items:center;font-size:19px;
+    background:rgba(124,92,255,.16);color:var(--accent-2);
+    margin-bottom:16px;font-weight:700;
+  }
+  .card h3{font-size:17px;margin-bottom:10px}
+  .card p{font-size:14px;color:var(--muted)}
+  .card ul{margin-top:12px;padding-left:18px;font-size:13.5px;color:var(--muted)}
+  .card ul li{margin-bottom:6px}
+
+  /* workflow */
+  .flow{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+  .flow-step{
+    display:grid;grid-template-columns:96px 1fr;gap:22px;
+    padding:24px 26px;border-bottom:1px solid var(--line);
+    transition:.2s;
+  }
+  .flow-step:last-child{border-bottom:none}
+  .flow-step:hover{background:rgba(124,92,255,.07)}
+  .flow-num{
+    font-size:26px;font-weight:800;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    letter-spacing:1px;
+  }
+  .flow-body h3{font-size:16.5px;margin-bottom:8px}
+  .flow-body p{font-size:14px;color:var(--muted)}
+  .flow-body .tips{
+    margin-top:10px;font-size:13px;color:var(--accent-2);
+    background:rgba(34,211,238,.08);border-left:3px solid var(--accent-2);
+    padding:8px 12px;border-radius:0 8px 8px 0;
+  }
+
+  /* tool table */
+  .tool-table{
+    width:100%;border-collapse:collapse;font-size:14px;
+    background:var(--panel);border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .tool-table th,.tool-table td{
+    padding:14px 18px;text-align:left;border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  .tool-table th{
+    background:rgba(124,92,255,.14);font-size:13px;
+    color:#fff;letter-spacing:.6px;font-weight:700;
+  }
+  .tool-table td{color:var(--muted)}
+  .tool-table td strong{color:var(--text);display:block;font-size:14.5px;margin-bottom:3px}
+  .tool-table tr:last-child td{border-bottom:none}
+  .tool-table tr:hover td{background:rgba(255,255,255,.03)}
+
+  /* genre chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .chip{
+    font-size:13.5px;color:var(--muted);
+    border:1px solid var(--line);background:rgba(255,255,255,.03);
+    padding:8px 16px;border-radius:999px;transition:.2s;
+  }
+  .chip:hover{color:#fff;border-color:var(--accent);background:rgba(124,92,255,.16)}
+
+  /* faq */
+  .faq{display:grid;gap:12px}
+  details{
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:0 20px;transition:.2s;
+  }
+  details[open]{border-color:rgba(124,92,255,.5);background:var(--panel-2)}
+  summary{
+    list-style:none;cursor:pointer;
+    padding:18px 0;font-size:15.5px;font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";font-size:20px;color:var(--accent-2);
+    transition:.2s;flex-shrink:0;font-weight:400;
+  }
+  details[open] summary::after{content:"–"}
+  details p{font-size:14px;color:var(--muted);padding:0 0 20px}
+
+  /* notice */
+  .notice{
+    background:linear-gradient(135deg,rgba(255,107,157,.12),rgba(124,92,255,.12));
+    border:1px solid rgba(255,107,157,.32);
+    border-radius:var(--radius);padding:26px 28px;
+  }
+  .notice h3{font-size:17px;margin-bottom:12px;color:#ffd6e6}
+  .notice ul{padding-left:20px;font-size:14px;color:var(--muted)}
+  .notice ul li{margin-bottom:8px}
+
+  /* footer */
+  .site-footer{
+    border-top:1px solid var(--line);margin-top:30px;
+    padding:44px 0 30px;background:rgba(0,0,0,.22);
+  }
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+  .footer-grid h4{font-size:14px;margin-bottom:14px;letter-spacing:.6px}
+  .footer-grid p{font-size:13.5px;color:var(--muted)}
+  .footer-grid ul{list-style:none;display:grid;gap:9px}
+  .footer-grid ul a{font-size:13.5px;color:var(--muted);transition:.2s}
+  .footer-grid ul a:hover{color:var(--accent-2)}
+  .copyright{
+    margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:#6f7699;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:10px;
+  }
+
+  /* responsive */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+    .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    .header-inner{flex-direction:column;align-items:flex-start;gap:10px}
+    .nav{width:100%}
+    .nav a{padding:7px 10px;font-size:13px}
+    .hero{padding:40px 0 30px}
+    section{padding:40px 0}
+    .grid-3,.grid-4,.grid-2{grid-template-columns:1fr}
+    .hero-stats{grid-template-columns:1fr 1fr}
+    .flow-step{grid-template-columns:1fr;gap:8px;padding:20px}
+    .tool-table{font-size:13px}
+    .tool-table th,.tool-table td{padding:11px 12px}
+    .footer-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <div class="brand-mark">AI</div>
+      <div class="brand-text">
+        <strong>AI短剧工作台</strong>
+        <span>创作 · 工具 · 流程 · 观察</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#intro">认知入门</a>
+      <a href="#workflow">制作流程</a>
+      <a href="#tools">工具选型</a>
+      <a href="#genre">题材方向</a>
+      <a href="#compliance">合规要点</a>
+      <a href="#faq">常见问题</a>
+      <a href="#faq" class="cta">开始了解</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="intro">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tagline"><i></i>面向创作者与内容团队的入门参考</span>
+        <h1>用 AI 做短剧：从<em>剧本生成</em>到成片发布的完整思路</h1>
+        <p class="lead">
+          ai短剧指的是借助人工智能工具参与剧本构思、分镜设计、画面生成、配音配乐与剪辑合成等环节，产出时长较短、节奏紧凑的连续或单元剧内容。它并不是“一键出片”，而是把传统短剧制作中的部分重复性工作交给模型处理，让个人或小团队也能完成过去需要多人协作的流程。下面从概念、流程、工具、题材和合规几个角度，帮你建立一套可落地的认知框架。
+        </p>
+        <div class="hero-actions">
+          <a href="#workflow" class="btn btn-primary">查看制作流程 →</a>
+          <a href="#tools" class="btn btn-ghost">了解工具类型</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>5 大环节</strong><span>剧本 · 分镜 · 画面 · 声音 · 剪辑</span></div>
+          <div class="stat"><strong>3 类工具</strong><span>文本 / 图像视频 / 音频</span></div>
+          <div class="stat"><strong>关键前提</strong><span>素材授权与内容合规</span></div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-head"><i></i><i></i><i></i></div>
+        <div class="shot">
+          <div class="shot-icon"></div>
+        </div>
+        <ul class="stage-list">
+          <li><b>01</b> 主题与人物设定，明确集数与时长</li>
+          <li><b>02</b> 分集大纲与台词脚本生成</li>
+          <li><b>03</b> 分镜描述与画面风格统一</li>
+          <li><b>04</b> 配音、音效与字幕合成</li>
+          <li><b>05</b> 剪辑节奏与发布版本导出</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 认知 -->
+  <section id="what">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">认知入门</div>
+        <h2>ai短剧到底改变了什么</h2>
+        <p>理解它的边界，比追逐工具更重要。AI 参与的是“生产环节”，而不是替代创作判断。</p>
+      </div>
+      <div class="card-grid grid-3">
+        <article class="card">
+          <div class="ico">剧</div>
+          <h3>剧本阶段的效率提升</h3>
+          <p>用大语言模型做题材发散、人物小传、分集大纲和台词初稿，把创作者从“空白页焦虑”中解放出来，再人工打磨冲突与情绪节奏。</p>
+          <ul>
+            <li>适合：大纲扩写、对白润色、多版本对比</li>
+            <li>注意：人物动机与价值观仍需人工把关</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="ico">画</div>
+          <h3>画面与分镜的辅助生成</h3>
+          <p>通过文生图、图生视频等方式快速产出概念图与动态镜头，用于前期提案、风格测试或低成本成片素材。</p>
+          <ul>
+            <li>适合：概念设计、空镜、转场、氛围镜头</li>
+            <li>注意：人物一致性、镜头连贯性仍是难点</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="ico">声</div>
+          <h3>配音与音乐的处理</h3>
+          <p>语音合成可用于旁白、多角色试音和临时小样；音乐与音效工具可辅助生成氛围配乐，降低素材采购成本。</p>
+          <ul>
+            <li>适合：旁白、解说、多语种版本</li>
+            <li>注意：商用授权范围需逐项确认</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 流程 -->
+  <section id="workflow">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">制作流程</div>
+        <h2>一条可复用的 AI 短剧生产链路</h2>
+        <p>不同团队的分工会有差异，但核心环节基本一致。建议先跑通一集，再考虑批量生产。</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-body">
+            <h3>定位与设定：先想清楚给谁看</h3>
+            <p>确定目标平台、单集时长、总集数和核心受众，再写一句话故事梗概与主要人物设定。短剧的节奏依赖强钩子，前几秒能否留住观众往往决定完播表现。</p>
+            <div class="tips">建议先写“一句话卖点 + 三幕结构”，再进入台词创作。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-body">
+            <h3>剧本与分集大纲</h3>
+            <p>借助文本模型生成分集大纲、场景清单和台词初稿，然后人工调整人物关系、冲突强度与结尾悬念。注意每集结尾留出承接点，方便连续观看。</p>
+            <div class="tips">把模型当“编剧助理”，而不是“最终作者”。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-body">
+            <h3>分镜与视觉风格统一</h3>
+            <p>将剧本拆成镜头描述，标注景别、机位、光线和情绪。使用图像工具生成角色参考图与场景概念图，并固定提示词风格，减少画面跳变。</p>
+            <div class="tips">建立角色参考图库与统一提示词模板，能显著降低返工。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-body">
+            <h3>画面生成与动态合成</h3>
+            <p>根据分镜生成静态画面或短片段，再通过剪辑软件组合。对于人物动作复杂的镜头，可考虑实拍与 AI 素材混合，避免过度依赖生成画面导致失真。</p>
+            <div class="tips">关键情绪镜头优先保证质量，次要镜头可用空镜与转场过渡。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">05</div>
+          <div class="flow-body">
+            <h3>配音、字幕与剪辑节奏</h3>
+            <p>完成配音与音效铺设，添加字幕并校对错别字。短剧信息密度高，剪辑上要注意镜头时长与台词节奏的匹配，避免拖沓。</p>
+            <div class="tips">导出前用手机小屏预览一遍，检查字幕可读性与音量平衡。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">06</div>
+          <div class="flow-body">
+            <h3>发布与版本管理</h3>
+            <p>按平台要求导出竖屏或横屏版本，准备封面、标题与简介。保留工程文件与素材来源记录，便于后续修改和版权说明。</p>
+            <div class="tips">建立素材台账，记录每个 AI 素材的生成工具与授权状态。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 工具 -->
+  <section id="tools">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">工具选型</div>
+        <h2>按环节选择工具类型，而不是追热点</h2>
+        <p>工具迭代很快，与其记具体产品名，不如先明确每个环节需要解决什么问题。</p>
+      </div>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th style="width:16%">环节</th>
+            <th style="width:26%">工具类型</th>
+            <th style="width:32%">主要用途</th>
+            <th style="width:26%">选择时关注什么</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>剧本</strong>文本生成</td>
+            <td>大语言模型对话工具</td>
+            <td>题材发散、大纲扩写、台词初稿、多语言翻译</td>
+            <td>长文本稳定性、是否支持角色设定记忆、输出可编辑性</td>
+          </tr>
+          <tr>
+            <td><strong>视觉</strong>图像生成</td>
+            <td>文生图 / 图生图工具</td>
+            <td>角色参考图、场景概念图、分镜草图</td>
+            <td>风格一致性、角色保持能力、分辨率与商用条款</td>
+          </tr>
+          <tr>
+            <td><strong>动态</strong>视频生成</td>
+            <td>图生视频 / 文生视频工具</td>
+            <td>短镜头动态化、空镜、转场素材</td>
+            <td>时长限制、画面稳定性、运动合理性</td>
+          </tr>
+          <tr>
+            <td><strong>声音</strong>语音合成</td>
+            <td>文本转语音与变声工具</td>
+            <td>旁白、多角色配音、试音小样</td>
+            <td>音色自然度、情感表现、商用授权范围</td>
+          </tr>
+          <tr>
+            <td><strong>音乐</strong>音频生成</td>
+            <td>配乐与音效生成工具</td>
+            <td>背景音乐、氛围音效、片头片尾</td>
+            <td>版权归属、是否可商用、曲库风格覆盖</td>
+          </tr>
+          <tr>
+            <td><strong>后期</strong>剪辑合成</td>
+            <td>常规剪辑软件 + 字幕工具</td>
+            <td>镜头拼接、字幕、调色、音画同步</td>
+            <td>操作效率、格式兼容、批量导出能力</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 题材 -->
+  <section id="genre">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">题材方向</div>
+        <h2>哪些题材更适合用 AI 辅助制作</h2>
+        <p>AI 在画面一致性和复杂动作上仍有局限，题材选择应扬长避短。</p>
+      </div>
+
+      <div class="card-grid grid-2">
+        <article class="card">
+          <div class="ico">✓</div>
+          <h3>相对友好的方向</h3>
+          <p>以下类型对连续动作和人物面部稳定性要求较低，更容易用 AI 素材完成。</p>
+          <ul>
+            <li>悬疑推理与信息流叙事，依赖台词和氛围</li>
+            <li>都市情感单元剧，场景相对固定</li>
+            <li>知识科普、历史故事演绎，可用旁白串联</li>
+            <li>奇幻设定与世界观展示，概念画面接受度高</li>
+            <li>职场、校园等日常题材，空镜与特写使用多</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="ico">!</div>
+          <h3>需要谨慎处理的方向</h3>
+          <p>这些类型对表演细节和动作连续性要求高，纯 AI 生成容易露怯。</p>
+          <ul>
+            <li>高强度打斗与追逐，动作连贯性难以保证</li>
+            <li>大量近景对话，面部表情细微变化要求高</li>
+            <li>真实人物传记类，涉及肖像与事实准确性</li>
+            <li>需要精确还原特定场景或历史细节的题材</li>
+            <li>涉及未成年人形象的敏感内容</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="chips" style="margin-top:26px">
+        <span class="chip">都市情感</span>
+        <span class="chip">悬疑推理</span>
+        <span class="chip">古风奇幻</span>
+        <span class="chip">职场成长</span>
+        <span class="chip">知识科普</span>
+        <span class="chip">科幻设定</span>
+        <span class="chip">民间故事</span>
+        <span class="chip">轻喜剧</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合规 -->
+  <section id="compliance">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">合规要点</div>
+        <h2>发布前必须确认的几件事</h2>
+        <p>AI 内容的法律与平台规则仍在演进，以下为通用提醒，具体要求请以最新法规和平台公告为准。</p>
+      </div>
+
+      <div class="notice">
+        <h3>素材授权与内容标识</h3>
+        <ul>
+          <li>确认所用 AI 工具的生成内容是否允许商用，免费版与付费版的授权条款可能不同。</li>
+          <li>避免使用未经授权的真人肖像、声音、商标、影视片段作为生成素材或参考图。</li>
+          <li>按照平台要求对 AI 生成内容进行显著标识，不隐瞒生成属性。</li>
+          <li>剧本与台词不得抄袭他人作品，改编需获得相应授权。</li>
+          <li>不制作含有暴力、色情、歧视、虚假信息或诱导性内容的短剧。</li>
+          <li>涉及真实事件、机构或人物的内容，应核实事实，避免误导观众。</li>
+          <li>保留创作过程记录与素材来源，便于应对版权争议或平台审核。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">常见问题</div>
+        <h2>关于 ai短剧 的高频疑问</h2>
+        <p>以下回答基于通用制作经验整理，不构成法律或投资建议。</p>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>完全没有影视基础，能做出 AI 短剧吗？</summary>
+          <p>可以尝试，但需要补齐基础叙事能力。建议从 1 到 2 分钟的单元短片开始，先练习“写清楚一个完整的小冲突”，再逐步学习分镜和剪辑。工具能降低操作门槛，但故事是否好看仍取决于创作者的判断。</p>
+        </details>
+        <details>
+          <summary>AI 生成的画面人物总是不一致，怎么改善？</summary>
+          <p>常见做法是先确定角色参考图，再在每次生成时复用同一组提示词与参考图；也可以通过固定种子、控制构图和服装描述来减少跳变。对于关键角色，可考虑实拍或人工绘制部分素材，再与 AI 画面混合使用。</p>
+        </details>
+        <details>
+          <summary>用 AI 配音需要注意什么？</summary>
+          <p>首先要确认工具的商用授权范围，其次避免模仿特定真人的声音特征。如果用于多角色对白，注意音色区分度和语速节奏，必要时人工调整停顿与重音，避免机械感影响观感。</p>
+        </details>
+        <details>
+          <summary>AI 短剧的时长和集数怎么规划比较合理？</summary>
+          <p>没有统一标准，需结合平台特性和内容节奏。竖屏内容通常节奏更快，单集时长偏短；横屏或偏叙事的作品可以适当延长。建议先完成一集样片，测试完播和反馈后再决定是否扩充集数。</p>
+        </details>
+        <details>
+          <summary>发布时会被平台判定为低质内容吗？</summary>
+          <p>平台通常关注内容原创性、信息价值和用户体验。画面粗糙、配音机械、剧情空洞的作品容易被限制推荐。提升剧本质量、控制画面稳定度、做好字幕与音效，是降低风险的有效方式。同时应遵守各平台对 AI 内容的标识要求。</p>
+        </details>
+        <details>
+          <summary>AI 短剧能商用变现吗？</summary>
+          <p>能否商用取决于三个层面：所用工具的授权条款、素材本身的版权状态、以及发布平台的规则。建议在投入较大成本前，先逐项确认授权范围，并保留相关记录。具体收益模式请以实际平台政策为准。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>AI短剧工作台</h4>
+        <p>一个围绕 AI 短剧创作流程整理的信息页面，帮助创作者理解工具边界、制作环节与合规要点。内容随行业变化持续调整。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#intro">认知入门</a></li>
+          <li><a href="#workflow">制作流程</a></li>
+          <li><a href="#tools">工具选型</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>创作参考</h4>
+        <ul>
+          <li><a href="#genre">题材方向</a></li>
+          <li><a href="#compliance">合规要点</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>说明</h4>
+        <ul>
+          <li>本页不提供具体产品推荐</li>
+          <li>授权与法规请以官方为准</li>
+          <li>内容仅供参考与学习</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2024 AI短剧工作台 · 内容仅供学习参考</span>
+      <span>创作有边界，发布需合规</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 平滑滚动兼容处理与导航高亮
+  (function () {
+    var links = document.querySelectorAll('.nav a[href^="#"]');
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var id = this.getAttribute('href');
+        var target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          var top = target.getBoundingClientRect().top + window.pageYOffset - 70;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // FAQ 手风琴：同时只展开一项
+    var detailsList = document.querySelectorAll('.faq details');
+    detailsList.forEach(function (item) {
+      item.addEventListener('toggle', function () {
+        if (this.open) {
+          detailsList.forEach(function (other) {
+            if (other !== item) other.open = false;
+          });
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+  </html>
