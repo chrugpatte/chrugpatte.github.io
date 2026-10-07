@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蘑菇视频-短视频与影视内容在线观看与使用指南</title>
+<meta name="description" content="蘑菇视频是一个面向大众的视频内容平台，提供短视频、影视片段、生活记录与创作者内容浏览。本页介绍蘑菇视频的内容类型、观看方式、使用建议与常见问题，帮助新用户快速上手。">
+<meta name="keywords" content="蘑菇视频,蘑菇视频在线观看,短视频平台,影视片段,视频内容,蘑菇视频使用指南">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#2f9e6e;
+  --green-dark:#1f7a52;
+  --green-soft:#eaf7f1;
+  --ink:#1c2a24;
+  --ink-2:#4a5c53;
+  --line:#dfe8e3;
+  --bg:#f6faf8;
+  --card:#ffffff;
+  --radius:14px;
+}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 顶部条 */
+.topbar{
+  background:var(--green-dark);
+  color:#d6f0e4;
+  font-size:13px;
+  text-align:center;
+  padding:6px 16px;
+  letter-spacing:.3px;
+}
+
+/* 页眉 */
+.site-header{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.header-inner{
+  max-width:1180px;
+  margin:0 auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:20px;
+  font-weight:700;
+  color:var(--green-dark);
+  white-space:nowrap;
+}
+.logo-mark{
+  width:34px;height:34px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--green),#7fd3ab);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:17px;font-weight:700;
+}
+.main-nav{
+  display:flex;
+  gap:22px;
+  font-size:15px;
+  color:var(--ink-2);
+  flex-wrap:wrap;
+}
+.main-nav a{
+  padding:4px 0;
+  border-bottom:2px solid transparent;
+  transition:.2s;
+}
+.main-nav a:hover,.main-nav a.active{
+  color:var(--green-dark);
+  border-bottom-color:var(--green);
+}
+.header-cta{
+  margin-left:auto;
+  background:var(--green);
+  color:#fff;
+  padding:9px 20px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:600;
+  transition:.2s;
+  white-space:nowrap;
+}
+.header-cta:hover{background:var(--green-dark)}
+
+/* 首屏 */
+.hero{
+  background:linear-gradient(160deg,#f0faf5 0%,#e2f4eb 55%,#f7fbf9 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 20px 48px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:48px;
+  align-items:center;
+}
+.hero-tag{
+  display:inline-block;
+  background:#fff;
+  border:1px solid #cbe8da;
+  color:var(--green-dark);
+  font-size:13px;
+  padding:5px 14px;
+  border-radius:999px;
+  margin-bottom:18px;
+}
+.hero h1{
+  font-size:40px;
+  line-height:1.3;
+  letter-spacing:-.5px;
+  margin-bottom:16px;
+}
+.hero h1 span{color:var(--green-dark)}
+.hero-lead{
+  font-size:16.5px;
+  color:var(--ink-2);
+  margin-bottom:26px;
+  max-width:560px;
+}
+.hero-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-block;
+  padding:12px 26px;
+  border-radius:999px;
+  font-size:15px;
+  font-weight:600;
+  transition:.2s;
+}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-dark)}
+.btn-ghost{background:#fff;color:var(--green-dark);border:1px solid #cbe8da}
+.btn-ghost:hover{border-color:var(--green)}
+
+.hero-panel{
+  background:#fff;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  padding:22px;
+  box-shadow:0 12px 32px -20px rgba(31,122,82,.45);
+}
+.hero-panel h2{
+  font-size:15px;
+  color:var(--ink-2);
+  font-weight:600;
+  margin-bottom:14px;
+  letter-spacing:.4px;
+}
+.channel-list{list-style:none;display:grid;gap:10px}
+.channel-list li{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:var(--green-soft);
+  font-size:14.5px;
+  color:var(--ink);
+}
+.channel-list .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--green);
+  flex:none;
+}
+.channel-list small{
+  margin-left:auto;
+  color:var(--ink-2);
+  font-size:12.5px;
+}
+
+/* 通用区块 */
+.section{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 20px;
+}
+.section-head{
+  margin-bottom:30px;
+}
+.section-head h2{
+  font-size:26px;
+  letter-spacing:-.3px;
+  margin-bottom:8px;
+}
+.section-head p{
+  color:var(--ink-2);
+  font-size:15px;
+  max-width:760px;
+}
+
+/* 内容类型卡片 */
+.type-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.type-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 20px;
+  transition:.22s;
+}
+.type-card:hover{
+  transform:translateY(-3px);
+  border-color:#bfe3d1;
+  box-shadow:0 14px 30px -22px rgba(31,122,82,.5);
+}
+.type-icon{
+  width:40px;height:40px;
+  border-radius:10px;
+  background:var(--green-soft);
+  color:var(--green-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;
+  margin-bottom:14px;
+}
+.type-card h3{
+  font-size:16.5px;
+  margin-bottom:8px;
+}
+.type-card p{
+  font-size:14px;
+  color:var(--ink-2);
+}
+
+/* 观看流程 */
+.flow{
+  background:#fff;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.flow-inner{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 20px;
+}
+.flow-steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+  margin-top:8px;
+}
+.step{
+  position:relative;
+  padding:20px 18px;
+  border-radius:var(--radius);
+  background:var(--green-soft);
+}
+.step-num{
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+  background:var(--green);
+  width:26px;height:26px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;
+}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--ink-2)}
+
+/* 推荐内容区 */
+.rec-layout{
+  display:grid;
+  grid-template-columns:1.6fr 1fr;
+  gap:34px;
+}
+.rec-main h2,.rec-side h2{
+  font-size:22px;
+  margin-bottom:18px;
+}
+.rec-list{
+  display:grid;
+  gap:14px;
+}
+.rec-item{
+  display:flex;
+  gap:16px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  transition:.2s;
+}
+.rec-item:hover{border-color:#bfe3d1}
+.rec-thumb{
+  width:64px;height:64px;
+  flex:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#d9f0e5,#b7e4cd);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green-dark);
+  font-size:22px;
+}
+.rec-item h3{font-size:16px;margin-bottom:5px}
+.rec-item p{font-size:13.5px;color:var(--ink-2)}
+.rec-meta{
+  margin-top:8px;
+  font-size:12.5px;
+  color:#7d9188;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.side-box{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+  margin-bottom:20px;
+}
+.side-box h3{
+  font-size:16px;
+  margin-bottom:12px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+.side-box ul{list-style:none;display:grid;gap:10px}
+.side-box li{
+  font-size:14px;
+  color:var(--ink-2);
+  display:flex;
+  gap:9px;
+  align-items:flex-start;
+}
+.side-box li::before{
+  content:"";
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--green);
+  margin-top:9px;
+  flex:none;
+}
+.side-note{
+  font-size:13px;
+  color:var(--ink-2);
+  background:var(--green-soft);
+  border-radius:10px;
+  padding:12px 14px;
+  line-height:1.7;
+}
+
+/* 使用建议 */
+.tips-wrap{
+  background:#fff;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.tips-inner{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 20px;
+}
+.tips-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.tip-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 20px;
+  background:var(--bg);
+}
+.tip-card h3{
+  font-size:16.5px;
+  margin-bottom:10px;
+  color:var(--green-dark);
+}
+.tip-card p{font-size:14px;color:var(--ink-2)}
+
+/* FAQ */
+.faq-list{
+  display:grid;
+  gap:12px;
+  max-width:900px;
+}
+.faq-item{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.faq-item summary{
+  cursor:pointer;
+  padding:16px 20px;
+  font-size:15.5px;
+  font-weight:600;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+  content:"+";
+  color:var(--green);
+  font-size:20px;
+  font-weight:400;
+  flex:none;
+}
+.faq-item[open] summary::after{content:"–"}
+.faq-item .faq-body{
+  padding:0 20px 18px;
+  font-size:14.5px;
+  color:var(--ink-2);
+  border-top:1px solid var(--line);
+  padding-top:14px;
+}
+
+/* 页脚 */
+.site-footer{
+  background:#172a22;
+  color:#a9c4b6;
+  margin-top:0;
+}
+.footer-inner{
+  max-width:1180px;
+  margin:0 auto;
+  padding:46px 20px 30px;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:32px;
+}
+.footer-brand{
+  font-size:18px;
+  color:#fff;
+  font-weight:700;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:9px;
+}
+.footer-brand .logo-mark{width:28px;height:28px;font-size:14px;border-radius:8px}
+.footer-col h4{
+  color:#fff;
+  font-size:14.5px;
+  margin-bottom:14px;
+}
+.footer-col ul{list-style:none;display:grid;gap:9px}
+.footer-col li{font-size:13.5px}
+.footer-col a:hover{color:#fff}
+.footer-desc{font-size:13.5px;line-height:1.8;max-width:300px}
+.footer-bottom{
+  border-top:1px solid #28463a;
+  text-align:center;
+  padding:16px 20px;
+  font-size:12.5px;
+  color:#7fa392;
+}
+
+/* 响应式 */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;padding-top:40px}
+  .hero h1{font-size:32px}
+  .type-grid{grid-template-columns:repeat(2,1fr)}
+  .flow-steps{grid-template-columns:repeat(2,1fr)}
+  .rec-layout{grid-template-columns:1fr}
+  .tips-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .header-inner{flex-wrap:wrap;gap:12px}
+  .main-nav{order:3;width:100%;gap:16px;font-size:14px}
+  .header-cta{margin-left:auto}
+  .hero h1{font-size:27px}
+  .hero-lead{font-size:15px}
+  .section,.flow-inner,.tips-inner{padding:40px 16px}
+  .type-grid{grid-template-columns:1fr}
+  .flow-steps{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr;gap:24px;padding:36px 16px 24px}
+  .section-head h2{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">蘑菇视频 · 视频内容浏览与使用说明页 · 内容以实际平台展示为准</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-mark">蘑</span>
+      蘑菇视频
+    </div>
+    <nav class="main-nav">
+      <a href="#types" class="active">内容类型</a>
+      <a href="#how">观看方式</a>
+      <a href="#recommend">内容推荐</a>
+      <a href="#tips">使用建议</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a href="#how" class="header-cta">开始了解</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-tag">短视频 · 影视片段 · 生活记录</span>
+        <h1>蘑菇视频：<span>轻松浏览与观看视频内容</span>的入口</h1>
+        <p class="hero-lead">
+          蘑菇视频是一个以视频内容为核心的浏览平台，涵盖短视频、影视片段、生活记录、知识分享等常见类型。
+          如果你第一次接触它，最关心的问题通常是：里面有什么内容、怎么看、需要注意什么。
+          本页围绕这些实际问题，梳理内容分类、观看流程与使用建议。
+        </p>
+        <div class="hero-actions">
+          <a href="#types" class="btn btn-primary">查看内容类型</a>
+          <a href="#faq" class="btn btn-ghost">阅读常见问题</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <h2>常见内容频道</h2>
+        <ul class="channel-list">
+          <li><span class="dot"></span>短视频精选<small>碎片时间</small></li>
+          <li><span class="dot"></span>影视片段<small>剧情速览</small></li>
+          <li><span class="dot"></span>生活记录<small>日常分享</small></li>
+          <li><span class="dot"></span>知识科普<small>轻量学习</small></li>
+          <li><span class="dot"></span>搞笑娱乐<small>放松解压</small></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 内容类型 -->
+  <section class="section" id="types">
+    <div class="section-head">
+      <h2>蘑菇视频上常见的内容类型</h2>
+      <p>不同平台的内容侧重会有差异，下面几类是视频类平台中较为普遍的分类，可作为了解蘑菇视频内容结构的参考。</p>
+    </div>
+    <div class="type-grid">
+      <article class="type-card">
+        <div class="type-icon">▶</div>
+        <h3>短视频</h3>
+        <p>时长较短、节奏较快，适合在通勤、排队等碎片时间观看，内容覆盖生活、娱乐、美食等方向。</p>
+      </article>
+      <article class="type-card">
+        <div class="type-icon">🎬</div>
+        <h3>影视片段</h3>
+        <p>电影、剧集的精彩片段或剧情剪辑，便于快速了解一部作品的大致风格与看点。</p>
+      </article>
+      <article class="type-card">
+        <div class="type-icon">📷</div>
+        <h3>生活记录</h3>
+        <p>日常 vlog、旅行见闻、美食制作等真实记录类内容，偏向陪伴感与生活气息。</p>
+      </article>
+      <article class="type-card">
+        <div class="type-icon">💡</div>
+        <h3>知识分享</h3>
+        <p>以通俗讲解为主的知识类视频，涉及科普、技能、学习方法等，节奏通常较为平缓。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 观看方式 -->
+  <section class="flow" id="how">
+    <div class="flow-inner">
+      <div class="section-head">
+        <h2>从打开到观看的一般流程</h2>
+        <p>视频类平台的操作逻辑大体相近，下面四步可以帮助新用户快速理解使用路径。</p>
+      </div>
+      <div class="flow-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>进入首页</h3>
+          <p>打开平台后，首页通常会展示推荐内容与分类入口，可先大致浏览整体内容风格。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>选择分类</h3>
+          <p>根据自己的兴趣，进入短视频、影视、生活等对应频道，缩小浏览范围。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>点击播放</h3>
+          <p>选中感兴趣的内容后点击播放，注意查看清晰度选项与音量设置。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>收藏与回顾</h3>
+          <p>遇到喜欢的内容可以收藏或记录，方便之后再次查找和观看。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐内容 -->
+  <section class="section" id="recommend">
+    <div class="rec-layout">
+      <div class="rec-main">
+        <h2>值得关注的几类内容方向</h2>
+        <div class="rec-list">
+          <article class="rec-item">
+            <div class="rec-thumb">▶</div>
+            <div>
+              <h3>节奏明快的短视频合集</h3>
+              <p>单条时长较短，适合用来填充零散时间。建议按主题连续观看，体验会更连贯。</p>
+              <div class="rec-meta"><span>适合碎片时间</span><span>轻松浏览</span></div>
+            </div>
+          </article>
+          <article class="rec-item">
+            <div class="rec-thumb">🎬</div>
+            <div>
+              <h3>影视作品片段与解说</h3>
+              <p>通过片段快速判断一部作品是否合自己口味，再决定是否完整观看原片。</p>
+              <div class="rec-meta"><span>剧情速览</span><span>选片参考</span></div>
+            </div>
+          </article>
+          <article class="rec-item">
+            <div class="rec-thumb">📷</div>
+            <div>
+              <h3>生活与旅行记录</h3>
+              <p>真实感较强的内容类型，适合在放松状态下观看，也常能获得生活灵感。</p>
+              <div class="rec-meta"><span>日常陪伴</span><span>节奏舒缓</span></div>
+            </div>
+          </article>
+          <article class="rec-item">
+            <div class="rec-thumb">💡</div>
+            <div>
+              <h3>轻量知识类视频</h3>
+              <p>用几分钟讲清一个概念或方法，适合对某个话题产生兴趣后做初步了解。</p>
+              <div class="rec-meta"><span>通俗讲解</span><span>入门友好</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <aside class="rec-side">
+        <div class="side-box">
+          <h3>浏览小提示</h3>
+          <ul>
+            <li>先确定想看的类型，再进入对应频道，效率更高。</li>
+            <li>关注更新频率稳定的内容方向，减少无效浏览。</li>
+            <li>对感兴趣的内容及时收藏，避免之后找不到。</li>
+            <li>合理安排观看时长，避免长时间连续刷视频。</li>
+          </ul>
+        </div>
+        <div class="side-box">
+          <h3>关于内容来源</h3>
+          <p class="side-note">
+            视频类平台的内容通常由创作者上传或平台整理。具体内容、更新情况与可观看范围，请以实际平台页面显示为准。
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 使用建议 -->
+  <section class="tips-wrap" id="tips">
+    <div class="tips-inner">
+      <div class="section-head">
+        <h2>使用蘑菇视频时的几点建议</h2>
+        <p>视频平台使用体验的好坏，很大程度取决于观看习惯与设备环境。以下建议供参考。</p>
+      </div>
+      <div class="tips-grid">
+        <article class="tip-card">
+          <h3>网络与画质</h3>
+          <p>观看时可根据网络情况选择合适清晰度。网络不稳定时，适当降低画质通常能减少卡顿。</p>
+        </article>
+        <article class="tip-card">
+          <h3>时间管理</h3>
+          <p>短视频容易连续观看，建议提前设定观看时长，或利用平台自带的提醒功能。</p>
+        </article>
+        <article class="tip-card">
+          <h3>内容筛选</h3>
+          <p>主动选择感兴趣的分类，比被动接受推荐更容易获得符合预期的观看体验。</p>
+        </article>
+        <article class="tip-card">
+          <h3>账号与隐私</h3>
+          <p>如需登录，注意使用正规入口，不要在陌生页面填写账号密码等敏感信息。</p>
+        </article>
+        <article class="tip-card">
+          <h3>音量与耳机</h3>
+          <p>在公共场合观看时建议佩戴耳机并控制音量，避免影响他人。</p>
+        </article>
+        <article class="tip-card">
+          <h3>理性看待推荐</h3>
+          <p>推荐结果由算法根据行为生成，不代表全部内容，可主动搜索以拓宽内容范围。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-head">
+      <h2>常见问题</h2>
+      <p>以下问题来自用户了解视频类平台时较常提出的疑问，回答力求稳妥、不夸大。</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>蘑菇视频主要提供什么类型的内容？</summary>
+        <div class="faq-body">
+          从名称与常见定位来看，蘑菇视频属于视频内容浏览类平台，内容通常以短视频为主，并可能包含影视片段、生活记录、知识分享等方向。具体内容构成会随平台运营情况变化，建议以实际页面展示为准。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>观看蘑菇视频需要注册账号吗？</summary>
+        <div class="faq-body">
+          不同平台对浏览与互动的权限设置不同。一般情况下，浏览内容可能无需登录，而收藏、评论、关注等功能通常需要账号。具体规则请以平台实际提示为准。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>遇到视频无法播放怎么办？</summary>
+        <div class="faq-body">
+          可以先检查网络连接是否正常，再尝试切换清晰度或刷新页面。如果问题持续存在，可能是内容本身的状态变化或平台临时调整，建议稍后再试。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>如何减少无关内容的推荐？</summary>
+        <div class="faq-body">
+          多数平台提供“不感兴趣”或类似反馈入口，使用后有助于调整推荐结果。同时，主动搜索和观看自己感兴趣的分类，也能逐步改善推荐内容的相关性。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>长时间刷视频有什么需要注意的？</summary>
+        <div class="faq-body">
+          短视频内容节奏较快，容易在不知不觉中延长观看时间。建议设定使用时长、定时休息，并注意用眼卫生与作息安排。
+        </div>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span class="logo-mark">蘑</span>蘑菇视频</div>
+      <p class="footer-desc">本页为蘑菇视频相关内容介绍与使用说明页面，帮助用户了解视频平台的内容类型、观看方式与使用建议。</p>
+    </div>
+    <div class="footer-col">
+      <h4>内容导航</h4>
+      <ul>
+        <li><a href="#types">内容类型</a></li>
+        <li><a href="#how">观看方式</a></li>
+        <li><a href="#recommend">内容推荐</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>使用帮助</h4>
+      <ul>
+        <li><a href="#tips">使用建议</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>说明</h4>
+      <ul>
+        <li>内容以平台实际展示为准</li>
+        <li>请合理安排观看时间</li>
+        <li>注意保护个人账号信息</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 蘑菇视频内容介绍页 · 本页仅作信息说明用途</div>
+</footer>
+
+</body>
+    </html>
